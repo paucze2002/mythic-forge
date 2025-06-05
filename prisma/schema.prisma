@@ -14,6 +14,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+// TODO: remove POST - welcome screen only
 model Post {
     id        Int      @id @default(autoincrement())
     name      String
@@ -55,13 +56,14 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String      @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?     @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
+    characters    Character[]
     posts         Post[]
 }
 
@@ -71,4 +73,65 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Character {
+    id           String          @id @default(cuid())
+    name         String
+    user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId       String
+    race         Race?           @relation(fields: [raceId], references: [id])
+    raceId       String?
+    class        Class?          @relation(fields: [classId], references: [id])
+    classId      String?
+    background   Background?     @relation(fields: [backgroundId], references: [id])
+    backgroundId String?
+    level        Int?            @default(1)
+    stats        Json?
+    createdAt    DateTime        @default(now())
+    updatedAt    DateTime        @updatedAt
+    equipment    CharacterItem[]
+}
+
+model Race {
+    id         String      @id @default(cuid())
+    name       String      @unique
+    traits     Json
+    characters Character[]
+}
+
+model Class {
+    id          String      @id @default(cuid())
+    name        String      @unique
+    hitDice     String
+    primaryStat String
+    characters  Character[]
+}
+
+model Background {
+    id            String      @id @default(cuid())
+    name          String      @unique
+    proficiencies Json
+    characters    Character[]
+}
+
+model Item {
+    id             String          @id @default(cuid())
+    name           String          @unique
+    type           String
+    description    String?
+    properties     Json
+    characterItems CharacterItem[]
+}
+
+model CharacterItem {
+    id          String    @id @default(cuid())
+    character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+    characterId String
+    item        Item      @relation(fields: [itemId], references: [id])
+    itemId      String
+    quantity    Int       @default(1)
+    equipped    Boolean   @default(false)
+
+    @@unique([characterId, itemId])
 }

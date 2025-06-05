@@ -1,29 +1,51 @@
-# Create T3 App
+# 🧙 MythicForge — RPG Character Builder with Discord Sync
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Welcome to **MythicForge**, a full-stack, fun-focused web app for **creating and managing RPG character sheets**, designed for **Discord-based roleplaying communities**. Built with the modern **T3 Stack** (Next.js, tRPC, Tailwind, Prisma) and powered by **Discord OAuth**, MythicForge helps players craft their heroes and share them with their guilds effortlessly.
 
-## What's next? How do I make an app with this?
+---
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## ✨ Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- 🔐 **Discord Authentication** – Secure login via Discord OAuth2  
+- 📝 **Character Sheet Builder** – Create rich profiles with stats, backstories, traits, and images  
+- 📡 **Guild Sync** – Post or sync characters to Discord channels using webhooks  
+- 🧑‍⚖️ **Admin Panel** – Guild leaders can view, approve, or reject character submissions  
+- 🔗 **Rich Discord Embeds** – Auto-generate beautifully formatted embeds for approved characters  
+- ☁️ **Optional AWS Integration** – Store media (like avatars) in S3, email updates via SES, and log approvals via CloudWatch  
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+---
 
-## Learn More
+## 🚀 Tech Stack
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- **Frontend:** Next.js (App Router) + Tailwind CSS  
+- **Backend:** tRPC + Prisma (PostgreSQL)  
+- **Auth:** NextAuth.js with Discord provider  
+- **ORM:** Prisma + PostgreSQL  
+- **Hosting:** Vercel / AWS (optional)  
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### 🔧 Optional AWS Services
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- **S3** – Avatar and image storage  
+- **SES** – Email notifications for approvals/rejections  
+- **Lambda** – PDF generation or character validation  
+- **Secrets Manager** – Securely store Discord tokens and API keys  
 
-## How do I deploy this?
+---
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## 🧪 Upcoming Features
+
+- 🎨 Custom character templates & themes  
+- 📜 PDF character sheet export (via AWS Lambda + Puppeteer)  
+- 🎭 NPC generation and shared worldbuilding tools  
+- 🔍 Search & filter characters by guild, role, or tag  
+- 🛡️ Role-based access per guild  
+
+---
+
+## 🧰 Local Development
+
+```bash
+git clone https://github.com/yourname/mythicforge.git
+cd mythic-forge
+npm install
+npm eun dev
