@@ -16,15 +16,27 @@ export const characterRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(
+      z.object({
+        name: z.string().min(1),
+        raceId: z.string().min(1),
+        classId: z.string().min(1),
+        backgroundId: z.string().optional(),
+      })
+    )
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.character.create({
-        data: {
-          name: input.name,
-          user: { connect: { id: ctx.session.user.id } },
-        },
-      });
-    }),
+    return ctx.db.character.create({
+      data: {
+        name: input.name,
+        user: { connect: { id: ctx.session.user.id } },
+        race: { connect: { id: input.raceId } },
+        class: { connect: { id: input.classId } },
+        ...(input.backgroundId && {
+          background: { connect: { id: input.backgroundId } },
+        }),
+      },
+    });
+  }),
 
   getLatest: protectedProcedure.query(async ({ ctx }) => {
     const character = await ctx.db.character.findFirst({

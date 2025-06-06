@@ -1,5 +1,6 @@
 import { characterRouter } from "~/server/api/routers/character";
-import { postRouter } from "~/server/api/routers/post";
+import { raceRouter } from "~/server/api/routers/race";
+import { classRouter } from "~/server/api/routers/class";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -9,7 +10,8 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   character: characterRouter,
-  post: postRouter,
+  class: classRouter,
+  race: raceRouter,
 });
 
 // export type definition of API

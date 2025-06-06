@@ -14,19 +14,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// TODO: remove POST - welcome screen only
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -64,7 +51,6 @@ model User {
     accounts      Account[]
     sessions      Session[]
     characters    Character[]
-    posts         Post[]
 }
 
 model VerificationToken {
@@ -80,13 +66,13 @@ model Character {
     name         String
     user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId       String
-    race         Race?           @relation(fields: [raceId], references: [id])
-    raceId       String?
-    class        Class?          @relation(fields: [classId], references: [id])
-    classId      String?
+    race         Race            @relation(fields: [raceId], references: [id])
+    raceId       String
+    class        Class           @relation(fields: [classId], references: [id])
+    classId      String
     background   Background?     @relation(fields: [backgroundId], references: [id])
     backgroundId String?
-    level        Int?            @default(1)
+    level        Int             @default(1)
     stats        Json?
     createdAt    DateTime        @default(now())
     updatedAt    DateTime        @updatedAt
