@@ -8,7 +8,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 export const metadata: Metadata = {
   title: "Mystic forge",
   description: "Create your RPG character",
-  icons: [{ rel: "icon", url: "/wizard.ico" }],
+  icons: [{ rel: "icon", url: "/wizard-icon.ico" }],
 };
 
 const cinzel = Cinzel({

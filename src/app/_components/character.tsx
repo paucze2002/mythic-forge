@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { api } from "~/trpc/react";
 
-export function LatestCharacter() {
+export function Character() {
   const [latestCharacter] = api.character.getLatest.useSuspenseQuery();
   const { data: races = [] } = api.race.getAll.useQuery();
   const { data: classes = [] } = api.class.getAll.useQuery();
@@ -29,7 +29,7 @@ export function LatestCharacter() {
     <div className="w-full max-w-xs">
       {latestCharacter ? (
         <p className="truncate">
-          Your most recent character: {latestCharacter.name}
+          Your most recent character: {latestCharacter.name} {latestCharacter.classId}
         </p>
       ) : (
         <p>You have no characters yet.</p>

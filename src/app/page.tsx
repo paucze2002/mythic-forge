@@ -1,6 +1,3 @@
-import Link from "next/link";
-
-import { LatestCharacter } from "~/app/_components/character";
 import { Navbar } from "~/app/_components/navbar";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
@@ -15,7 +12,7 @@ export default async function Home() {
   return (
     <HydrateClient>
       <Navbar session={session}/>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#144d2b] to-[#23265d] font-sans text-white">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-black font-sans text-white">
         <div className="container flex flex-col items-center gap-12 px-4 py-16">
           <h1 className="text-center text-5xl leading-tight font-extrabold tracking-wide text-white drop-shadow-lg sm:text-6xl">
             RPG Character Builder
@@ -23,7 +20,6 @@ export default async function Home() {
           <p className="text-lg text-white/80">
             Craft your hero and forge their destiny
           </p>
-          {session?.user && <LatestCharacter />}
         </div>
       </main>
     </HydrateClient>
